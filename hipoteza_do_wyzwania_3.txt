@@ -1,0 +1,9 @@
+Hipoteza: W variational classifierze z wykładu (2 kubity, pomiar Z₀) o tym, czy model widzi drugi feature x₁, nie decyduje samo splątanie, tylko to, co trafia do mierzonego kubitu. Sprawdzam to na wariantach: bez splątania, z CNOT, z CZ, z CNOT i CZ naraz oraz bez splątania, ale z pomiarem Z₀Z₁.
+
+1) Bez splątania kubit 1 w ogóle nie wpływa na kubit 0, który jest mierzony, więc model nie widzi x₁.
+
+2) CNOT i CZ dają tę samą rodzinę funkcji: CNOT przekazuje sin(x₁ + θ₁), a CZ cos(x₁ + θ₁), a trening może przesunąć θ₁ o π/2. Po treningu dadzą więc podobną accuracy.
+
+3) Jeśli po CNOT dodam CZ, stan nadal jest splątany, ale model przestaje widzieć x₁ (do kubitu 0 trafia tylko ⟨Y₁⟩ = 0) i zachowuje się jak model bez splątania.
+
+4) Bez splątania, ale z pomiarem Z₀Z₁, wynik to f = ⟨Z₀⟩ · ⟨Z₁⟩, w który wchodzą features z obu kubitów. Model widzi x₁ bez splątania.
