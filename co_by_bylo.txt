@@ -1,0 +1,22 @@
+Co by było gdyby w ansatz dodać Rz w teście D, gdzie mamy splątanie CX i CZ
+
+1. D nie widziało x₁, bo informacja o x₁ musiała przejść przez ⟨Y⟩, a ⟨Y⟩ było równe zero.
+
+2. ⟨Y⟩ było zerem, bo w obwodzie są same RY, a RY obraca stan tylko „w jedną stronę” i nigdy nie wychodzi w kierunku Y.
+
+3. Skoro cały wynik D stoi na tym jednym zerze, naturalne pytanie brzmi: co jeśli to zero zniknie?
+
+4. Żeby zniknęło, trzeba obrócić stan w inną stronę. Robi to RZ: kręci wokół osi Z, więc przesuwa stan w kierunek Y.
+
+5. Do kubitu 0 dochodzi ⟨Y₀⟩ razy ⟨Y₁⟩. Wystarczy jedno zero w mnożeniu, żeby wyszło zero, więc RZ musi być na obu kubitach.
+
+Sprawdzenie:
+
+Wynik dla testu z Ry, Rz: [0.47927875 0.59820979] <- widzi
+Dla wersji bez Rz: [0.18636823 0.18636823] <- nie widzi x1
+Dla Rz tylko na q1: [0.18636823 0.18636823] <- nie widzi x1
+Dla Rz tylko na q0: [0.18636823 0.18636823] <- nie widzi x1
+
+Wniosek:
+
+Przewidywanie się sprawdziło: D zaczyna widzieć x₁ dopiero z RZ na obu kubitach. Splątanie (CNOT + CZ) jest we wszystkich przypadkach takie samo, a o tym, czy x₁ dochodzi do wyniku, decydują bramki wokół niego. To wzmacnia główną tezę. Pokazuje też, że ślepota D nie jest ogólną własnością CNOT + CZ, tylko wynika z tego, że ansatz ma same RY.
