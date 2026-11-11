@@ -1,4 +1,6 @@
-Hipoteza: W variational classifierze z wykładu (2 kubity, pomiar Z₀) o tym, czy model widzi drugi feature x₁, nie decyduje samo splątanie, tylko to, co trafia do mierzonego kubitu. Sprawdzam to na wariantach: bez splątania, z CNOT, z CZ, z CNOT i CZ naraz oraz bez splątania, ale z pomiarem Z₀Z₁.
+Hipoteza: W variational classifierze z wykładu (2 kubity, pomiar Z₀) o tym, czy model widzi drugi feature x₁, nie decyduje samo splątanie,
+tylko to, co trafia do mierzonego kubitu.
+Sprawdzam to na wariantach: bez splątania, z CNOT, z CZ, z CNOT i CZ naraz oraz bez splątania, ale z pomiarem Z₀Z₁.
 
 1) Bez splątania kubit 1 w ogóle nie wpływa na kubit 0, który jest mierzony, więc model nie widzi x₁.
 

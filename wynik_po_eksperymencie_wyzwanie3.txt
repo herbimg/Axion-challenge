@@ -1,0 +1,43 @@
+WYNIKI
+ 
+Średnia test accuracy z 5 seedów:
+ 
+A (bez splątania): 70.6%
+B (CNOT): 89.2%
+C (CZ): 89.2%
+D (CNOT + CZ): 70.7%
+A-ZZ (bez splątania, pomiar Z₀Z₁): 85.0%
+ 
+Wszystkie 4 przewidywania się sprawdziły.
+ 
+1) Bez splątania model nie widzi x₁
+ 
+Bez splątania kubit 1 nie wpływa na kubit 0, więc model korzysta tylko z x₀ i działa jak jeden próg na x₀ (70.6%). Zmiana samego x₁ nie zmienia f, θ₁ i θ₃ po treningu są takie same jak na starcie (gradient = 0), a decision boundary to pionowa linia.
+ 
+B ma 89.2%, bo CNOT przenosi informację o x₁ do mierzonego kubitu.
+ 
+ 
+2) CNOT i CZ dają ten sam model
+ 
+B i C mają tę samą accuracy (89.2%) i prawie identyczne decision boundaries. CNOT przekazuje sin(x₁ + θ₁), a CZ cos(x₁ + θ₁), a te funkcje różnią się tylko przesunięciem o π/2, które trening sam znajduje. Na learning curves do ok. 30 epoki się różnią, bo z tego samego θ startują z innej funkcji, ale potem się zbiegają. Końcowe θ₁ w B i C różni się o ok. 1.49, czyli prawie π/2.
+ 
+ 
+3) CNOT + CZ: splątanie jest, a model nie widzi x₁
+ 
+D jest splątany, a ma 70.7%, czyli tyle co A. Informacja o x₁ dochodzi do kubitu 0 przez ⟨Y⟩, a przy samych bramkach RY amplitudy są rzeczywiste, więc ⟨Y⟩ = 0 i x₁ znika. Tak jak w A: zmiana samego x₁ nie zmienia f, θ₁ i θ₃ się nie zmieniły, a decision boundary to pionowa linia.
+ 
+Na learning curves D ma trochę mniejsze MSE niż A, bo jego f jest "ściszone" przez czynnik cos θ₂, a MSE mniej karze ostrożne błędy. Decyzja dalej zależy tylko od x₀, więc accuracy jest takie samo.
+ 
+ 
+4) Pomiar Z₀Z₁: model widzi x₁ bez splątania
+ 
+A-ZZ nie ma żadnej bramki dwukubitowej, a ma 85.0% (+14.4 pp względem A). f = ⟨Z₀⟩ · ⟨Z₁⟩, więc x₁ wchodzi do wyniku przez pomiar, a nie przez splątanie. θ₃ tutaj się zmieniło, bo mierzymy też kubit 1.
+ 
+Jest słabszy od B i C, bo iloczyn dwóch osobnych funkcji daje tylko granicę w kształcie krzyża, która gorzej pasuje do księżyców.
+ 
+ 
+PODSUMOWANIE
+ 
+O tym, czy model widzi x₁, nie decyduje samo splątanie, tylko to, co trafia do mierzonego kubitu (albo co mierzymy). D jest splątany i nie widzi x₁, a A-ZZ nie jest splątany i widzi.
+ 
+ 
